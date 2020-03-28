@@ -1,3 +1,4 @@
 {
-	"item.moreores.amethyst_item": "Amethyst"
+	"item.moreores.amethyst_item": "Amethystbarren",
+	"block.moreores.amethyst_block" : "Amethystblock"
 }

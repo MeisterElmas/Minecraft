@@ -3,64 +3,41 @@ package furkan.moreores;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import furkan.moreores.lists.ItemList;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod ("moreores")
-
+@Mod (moreores.MOD_ID)
 public class moreores 
 {
 
-	private static int count;
 	public static moreores instance;
-	public static final String MODID = "moreores";
-	
-	private static final Logger LOGGER = LogManager.getLogger(MODID);	
+	public static final String MOD_ID = "moreores";
+	public static final Logger LOGGER = LogManager.getLogger();	
 	
 	public moreores()
 	{	
 		instance = this;
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+	}
+	
+	private void setup(final FMLCommonSetupEvent event)  
+	{
 		
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
-	private void setup(final FMLCommonSetupEvent event)
+	private void clientSetup(final FMLClientSetupEvent event)
 	{
-		LOGGER.info("Setup funktioniert!");
-	}
-	
-	private void clientRegistries(final FMLClientSetupEvent event)
-	{
-		LOGGER.info("ClientRegistries funktioniert!");
-	}
-	
-	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-	public static class RegsitryEvent 
-	{
-		@SubscribeEvent
-		public static void registerItems(final RegistryEvent.Register<Item> event)
-		{
-			event.getRegistry().registerAll
-			(
-				ItemList.amethyst_item = new Item(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("amethyst_item"))
-			);  
-		}
 		
-	     private static ResourceLocation location(String name)
-		{
-			return new ResourceLocation(MODID, name);
-		}
 	}
-} 
+	public void onServerStarting(FMLServerStartingEvent event) {
+		
+	}
+	
+
+} 	
