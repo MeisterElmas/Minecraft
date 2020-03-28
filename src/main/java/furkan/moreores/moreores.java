@@ -19,6 +19,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class moreores 
 {
+
+	private static int count;
 	public static moreores instance;
 	public static final String MODID = "moreores";
 	
